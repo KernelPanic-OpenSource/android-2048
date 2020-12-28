@@ -1,0 +1,28 @@
+version: 2.1
+jobs:
+  Plane-Android:
+   docker:
+      - image: dopaemon/docker-image:aosp
+   steps:
+      - run:
+          name: Start Build
+          no_output_timeout: 20m
+          command: |
+            sudo apt install git
+            git clone -b plane https://github.com/KernelPanic-OpenSource/apk plane
+            cd plane
+            ./gradlew
+      - run:
+          name: Telegram Upload CI
+          no_output_timeout: 20m
+          command: |
+            cd ~/plane
+            zip -rv9 plane.zip -i *.apk
+            export APKNAME="plane.zip*
+            curl -F chat_id=$CHAT_ID -F document=@$APKNAME -F parse_mode=markdown https://api.telegram.org/bot$BOT_TOKEN/sendDocument
+workflows:
+workflows:
+  version: 2.1
+  cooking:
+    jobs:
+      - Plane-Android
