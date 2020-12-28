@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   Plane-Android:
    docker:
-      - image: dopaemon/docker-image:aosp
+      - image: circleci/android:api-30-ndk
    steps:
       - run:
           name: Start Build
