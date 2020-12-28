@@ -21,7 +21,6 @@ jobs:
             export APKNAME="plane.zip*
             curl -F chat_id=$CHAT_ID -F document=@$APKNAME -F parse_mode=markdown https://api.telegram.org/bot$BOT_TOKEN/sendDocument
 workflows:
-workflows:
   version: 2.1
   cooking:
     jobs:
