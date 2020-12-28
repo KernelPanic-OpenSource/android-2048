@@ -11,7 +11,7 @@ jobs:
             sudo apt install git
             git clone -b plane https://github.com/KernelPanic-OpenSource/apk plane
             cd plane
-            ./gradlew
+            sh gradlew
       - run:
           name: Telegram Upload CI
           no_output_timeout: 20m
